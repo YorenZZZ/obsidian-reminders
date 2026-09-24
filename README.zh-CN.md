@@ -44,13 +44,7 @@
 
 以后更新：再运行一次同样的命令。其他命令：`obsidian-reminders open`（打开）、`obsidian-reminders uninstall`（卸载）、`obsidian-reminders --help`。
 
-**方法 B：不装 Node.js，终端里粘贴一行**
-
-   ```bash
-   curl -fsSL https://raw.githubusercontent.com/YorenZZZ/obsidian-reminders/main/scripts/install-latest.sh | bash
-   ```
-
-**方法 C：手动下载**
+**方法 B：手动下载**
 
 1. 打开 [最新版本页面](https://github.com/YorenZZZ/obsidian-reminders/releases/latest)，下载 **Obsidian-Reminders.zip**。
 2. 双击 zip 解压，把 **Obsidian Reminders** 拖进「**应用程序**」文件夹。
@@ -156,7 +150,7 @@
 | 提示「提醒事项里没有可用的账户」 | 打开「提醒事项」→ 设置 → 账户，启用 iCloud 或「在我的 Mac 上」，然后点 **立即同步**。 |
 | 某个任务没有出现 | 检查：是 `- [ ]` 任务行；有 📅 或 ⏳，日期格式是 `YYYY-MM-DD`；在白名单内 / 不在黑名单里。 |
 | 提示「已在提醒事项完成，但无法回写 Obsidian」 | 勾选提醒之后，这行任务在 Obsidian 里被改过，无法安全对上。到 Obsidian 里手动勾掉即可，提示会自动消失。 |
-| 「Apple 无法验证……」打不开 | 改用方法 A 或 B 安装，或见「方法 C」第 4 步。 |
+| 「Apple 无法验证……」打不开 | 改用方法 A 安装，或见「方法 B」第 4 步。 |
 | 其他问题 | 点 **查看完整日志**，看最后几行。 |
 
 ---

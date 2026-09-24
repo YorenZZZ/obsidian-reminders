@@ -44,13 +44,7 @@ Needs [Node.js](https://nodejs.org) (`node -v` in Terminal shows whether you hav
 
 To update later, run the same line again. Other commands: `obsidian-reminders open`, `obsidian-reminders uninstall`, `obsidian-reminders --help`.
 
-**Option B: one line in Terminal, without Node.js**
-
-   ```bash
-   curl -fsSL https://raw.githubusercontent.com/YorenZZZ/obsidian-reminders/main/scripts/install-latest.sh | bash
-   ```
-
-**Option C: download manually**
+**Option B: download manually**
 
 1. Go to the [latest release](https://github.com/YorenZZZ/obsidian-reminders/releases/latest) and download **Obsidian-Reminders.zip**.
 2. Double-click the zip, then drag **Obsidian Reminders** into your **Applications** folder.
@@ -154,7 +148,7 @@ Keyboard: **⌘R** sync now · **⌘W** close window (keeps running) · **⌘1**
 | Banner: *Reminders has no account* | Open Reminders → Settings → Accounts and enable iCloud or *On My Mac*, then click **Sync Now**. |
 | A task doesn't show up | It needs `- [ ]`, a 📅 or ⏳ date in `YYYY-MM-DD` form, and must be inside your whitelist / outside your blacklist. |
 | *Completed in Reminders but could not update Obsidian* | The task line was edited after you ticked the reminder, so it can't be matched safely. Tick it in Obsidian by hand; the warning disappears. |
-| "Apple cannot check it for malicious software" | Install with Option A or B instead, or see Option C, step 4. |
+| "Apple cannot check it for malicious software" | Install with Option A instead, or see Option B, step 4. |
 | Anything else | Click **View Full Log** and look at the last lines. |
 
 ---
