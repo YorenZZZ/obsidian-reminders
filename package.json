@@ -1,0 +1,29 @@
+{
+  "name": "obsidian-reminders",
+  "version": "1.0.1",
+  "description": "macOS menu bar app that syncs dated Obsidian tasks to Apple Reminders. Installs the app into /Applications.",
+  "keywords": ["obsidian", "reminders", "macos", "tasks", "menubar"],
+  "homepage": "https://github.com/YorenZZZ/obsidian-reminders#readme",
+  "bugs": "https://github.com/YorenZZZ/obsidian-reminders/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YorenZZZ/obsidian-reminders.git"
+  },
+  "license": "MIT",
+  "author": "YorenZZZ",
+  "os": ["darwin"],
+  "engines": {
+    "node": ">=16"
+  },
+  "bin": {
+    "obsidian-reminders": "bin/obsidian-reminders.js"
+  },
+  "files": [
+    "bin/",
+    "dist/Obsidian-Reminders.zip"
+  ],
+  "scripts": {
+    "postinstall": "node bin/obsidian-reminders.js postinstall",
+    "prepack": "scripts/npm-prepack.sh"
+  }
+}
