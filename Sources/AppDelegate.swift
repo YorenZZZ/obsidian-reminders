@@ -1,5 +1,4 @@
 import Cocoa
-import ServiceManagement
 
 extension Notification.Name {
     static let syncDidFinish = Notification.Name("ObsidianRemindersSyncDidFinish")
@@ -280,16 +279,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Launch at login
 
-    var launchAtLoginEnabled: Bool {
-        SMAppService.mainApp.status == .enabled
-    }
+    var launchAtLoginEnabled: Bool { LoginItem.isEnabled }
 
     /// Re-applies the login item if the user wants it but the registration is gone
     /// (which happens after every rebuild, since a new signature is a new bundle).
     private func reconcileLaunchAtLogin() {
-        guard Settings.shared.wantLaunchAtLogin else { return }
-        guard SMAppService.mainApp.status != .enabled else { return }
-        Log.info("Re-registering launch at login (status \(SMAppService.mainApp.status.rawValue))")
+        guard Settings.shared.wantLaunchAtLogin, !LoginItem.isEnabled else { return }
+        Log.info("Re-registering launch at login (status \(LoginItem.statusDescription))")
         if let error = setLaunchAtLogin(true) {
             Log.warn("Could not re-register launch at login: \(error)")
         }
@@ -299,17 +295,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func setLaunchAtLogin(_ enabled: Bool) -> String? {
         Settings.shared.wantLaunchAtLogin = enabled
         do {
-            if enabled {
-                if SMAppService.mainApp.status != .enabled {
-                    try SMAppService.mainApp.register()
-                }
-                Log.info("Launch at login enabled")
-            } else {
-                if SMAppService.mainApp.status == .enabled {
-                    try SMAppService.mainApp.unregister()
-                }
-                Log.info("Launch at login disabled")
-            }
+            try LoginItem.setEnabled(enabled)
+            Log.info("Launch at login \(enabled ? "enabled" : "disabled")")
             return nil
         } catch {
             let message = "\(error.localizedDescription)"

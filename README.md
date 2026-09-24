@@ -23,7 +23,7 @@ A small native macOS app that puts your **dated Obsidian tasks** into Apple **Re
 
 | | |
 |---|---|
-| A Mac with **macOS 14 Sonoma or later** | Apple menu  → About This Mac shows your version |
+| A Mac with **macOS 12.3 Monterey or later** (Apple Silicon or Intel) | Apple menu  → About This Mac shows your version |
 | **Obsidian** with at least one vault | Download from [obsidian.md](https://obsidian.md/download) |
 | The **Reminders** app with iCloud or "On My Mac" enabled | It's built into macOS |
 
@@ -47,7 +47,7 @@ A small native macOS app that puts your **dated Obsidian tasks** into Apple **Re
 3. Double-click the app. macOS will say it *"cannot be opened because Apple cannot check it"* — this is expected for free apps that are not sold through Apple. Click **Done** (or **Cancel**).
 4. Open  → **System Settings** → **Privacy & Security**, scroll down, and click **Open Anyway** next to "Obsidian Reminders". Confirm with your password or Touch ID.
 
-> You only have to do step 3–4 once.
+> You only have to do step 3–4 once. On macOS 12 Monterey the place is  → **System Preferences** → **Security & Privacy** → **General** → **Open Anyway** (or simply right-click the app → **Open** → **Open**).
 
 ### Step 2 — Allow access
 

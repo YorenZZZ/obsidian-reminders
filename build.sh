@@ -13,10 +13,16 @@ rm -rf "$BUILD"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 
 echo "==> Compiling Swift sources (universal: arm64 + x86_64)"
+# macOS 12.3 is the floor. The toolchain no longer ships the x86_64 Swift
+# back-compat libraries, which macOS 12.3+ does not need anyway (its Swift 5.6
+# runtime is built in), so they are skipped for the Intel slice.
 for ARCH in arm64 x86_64; do
+  EXTRA=()
+  [ "$ARCH" = x86_64 ] && EXTRA=(-runtime-compatibility-version none)
   swiftc \
     -O \
-    -target "$ARCH-apple-macosx14.0" \
+    -target "$ARCH-apple-macosx12.3" \
+    ${EXTRA[@]+"${EXTRA[@]}"} \
     -framework AppKit \
     -framework EventKit \
     -framework CoreServices \

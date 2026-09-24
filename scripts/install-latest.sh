@@ -9,9 +9,11 @@ REPO="YorenZZZ/obsidian-reminders"
 APP_NAME="Obsidian Reminders"
 ZIP_URL="https://github.com/$REPO/releases/latest/download/Obsidian-Reminders.zip"
 
-major="$(sw_vers -productVersion | cut -d. -f1)"
-if [ "$major" -lt 14 ]; then
-  echo "Obsidian Reminders needs macOS 14 (Sonoma) or later. This Mac runs $(sw_vers -productVersion)."
+version="$(sw_vers -productVersion)"
+major="$(echo "$version" | cut -d. -f1)"
+minor="$(echo "$version" | cut -d. -f2)"
+if [ "$major" -lt 12 ] || { [ "$major" -eq 12 ] && [ "${minor:-0}" -lt 3 ]; }; then
+  echo "Obsidian Reminders needs macOS 12.3 (Monterey) or later. This Mac runs $version."
   exit 1
 fi
 
