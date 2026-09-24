@@ -19,8 +19,7 @@
     "obsidian-reminders": "bin/obsidian-reminders.js"
   },
   "files": [
-    "bin/",
-    "dist/Obsidian-Reminders.zip"
+    "bin/"
   ],
   "scripts": {
     "postinstall": "node bin/obsidian-reminders.js postinstall",

@@ -13,8 +13,11 @@ const path = require('path');
 
 const APP_NAME = 'Obsidian Reminders';
 const BUNDLE = `${APP_NAME}.app`;
-const ZIP = path.join(__dirname, '..', 'dist', 'Obsidian-Reminders.zip');
 const PKG = require('../package.json');
+const REPO = 'YorenZZZ/obsidian-reminders';
+const ZIP_URL = `https://github.com/${REPO}/releases/download/v${PKG.version}/Obsidian-Reminders.zip`;
+// SHA-256 of that release asset, written by scripts/npm-prepack.sh.
+const SHA_FILE = path.join(__dirname, 'app.sha256');
 const LSREGISTER =
   '/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister';
 
@@ -71,9 +74,23 @@ function quit() {
   spawnSync('osascript', ['-e', `tell application "${APP_NAME}" to quit`], { stdio: 'ignore' });
 }
 
+function download(dir) {
+  const zip = path.join(dir, 'app.zip');
+  log(`Downloading ${ZIP_URL}`);
+  // curl follows GitHub's redirect and honours the usual proxy variables.
+  const res = spawnSync('/usr/bin/curl', ['-fL', '--retry', '3', '--progress-bar', ZIP_URL, '-o', zip], {
+    stdio: ['ignore', 'inherit', 'inherit'],
+  });
+  if (res.status !== 0) fail(`download failed. Check your network and run: obsidian-reminders install`);
+
+  const expected = fs.readFileSync(SHA_FILE, 'utf8').trim();
+  const actual = execFileSync('/usr/bin/shasum', ['-a', '256', zip]).toString().split(' ')[0];
+  if (actual !== expected) fail(`download is corrupted (sha256 ${actual}, expected ${expected}). Try again.`);
+  return zip;
+}
+
 function install() {
   checkPlatform();
-  if (!fs.existsSync(ZIP)) fail(`bundled app is missing (${ZIP}). Reinstall the package.`);
 
   const existing = installedApp();
   if (existing && installedVersion(existing) === PKG.version && !process.argv.includes('--force')) {
@@ -90,8 +107,9 @@ function install() {
 
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'obsidian-reminders-'));
   try {
+    const zip = download(tmp);
     log(`Unpacking ${APP_NAME} ${PKG.version}`);
-    run('/usr/bin/ditto', ['-x', '-k', ZIP, tmp]);
+    run('/usr/bin/ditto', ['-x', '-k', zip, tmp]);
 
     log(`Installing to ${dir}`);
     quit();
