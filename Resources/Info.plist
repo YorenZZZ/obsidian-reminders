@@ -4,11 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
-	<key>CFBundleLocalizations</key>
-	<array>
-		<string>en</string>
-		<string>zh-Hans</string>
-	</array>
+	<key>CFBundleDisplayName</key>
+	<string>Obsidian Reminders</string>
 	<key>CFBundleExecutable</key>
 	<string>ObsidianReminders</string>
 	<key>CFBundleIconFile</key>
@@ -17,27 +14,30 @@
 	<string>io.github.yorenzzz.obsidian-reminders</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>zh-Hans</string>
+	</array>
 	<key>CFBundleName</key>
-	<string>Obsidian Reminders</string>
-	<key>CFBundleDisplayName</key>
 	<string>Obsidian Reminders</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
-	<key>LSMinimumSystemVersion</key>
-	<string>14.0</string>
+	<string>2</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>12.3</string>
 	<key>NSHighResolutionCapable</key>
 	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>MIT License · sync between Obsidian Tasks and Apple Reminders</string>
 	<key>NSRemindersFullAccessUsageDescription</key>
 	<string>Obsidian Reminders reads and writes Reminders so that Obsidian tasks with a due (📅) or scheduled (⏳) date appear in your chosen list, and completions flow back to Obsidian.</string>
 	<key>NSRemindersUsageDescription</key>
 	<string>Obsidian Reminders reads and writes Reminders so that Obsidian tasks with a due (📅) or scheduled (⏳) date appear in your chosen list, and completions flow back to Obsidian.</string>
-	<key>NSHumanReadableCopyright</key>
-	<string>MIT License · sync between Obsidian Tasks and Apple Reminders</string>
 </dict>
 </plist>

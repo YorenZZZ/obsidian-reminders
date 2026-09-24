@@ -43,14 +43,19 @@ final class SyncEngine {
         EKEventStore.authorizationStatus(for: .reminder)
     }
 
-    var isAuthorized: Bool { authorizationStatus == .fullAccess }
+    var isAuthorized: Bool {
+        if #available(macOS 14.0, *) { return authorizationStatus == .fullAccess }
+        return authorizationStatus == .authorized
+    }
 
     /// Access was refused (or only write access granted). macOS will not ask
     /// again, so the user has to switch it on in System Settings.
     var accessBlocked: Bool {
         switch authorizationStatus {
-        case .denied, .restricted, .writeOnly: return true
-        default: return false
+        case .denied, .restricted: return true
+        default:
+            if #available(macOS 14.0, *) { return authorizationStatus == .writeOnly }
+            return false
         }
     }
 
@@ -63,8 +68,13 @@ final class SyncEngine {
     }
 
     func requestAccess(completion: @escaping (Bool, Error?) -> Void) {
-        store.requestFullAccessToReminders { granted, error in
+        let handler: EKEventStoreRequestAccessCompletionHandler = { granted, error in
             DispatchQueue.main.async { completion(granted, error) }
+        }
+        if #available(macOS 14.0, *) {
+            store.requestFullAccessToReminders(completion: handler)
+        } else {
+            store.requestAccess(to: .reminder, completion: handler)
         }
     }
 
