@@ -29,18 +29,28 @@
 
 ### 第 1 步：安装
 
-**方法 A（最简单）：终端里粘贴一行**
+**方法 A（最简单）：用 npm 安装**
+
+需要先装好 [Node.js](https://nodejs.org)（在终端输入 `node -v` 能看到版本号就说明已安装）。
 
 1. 按 **⌘ 空格**，输入 **终端**（或 Terminal），按 **回车**。
-2. 复制下面这一行，粘贴到终端窗口，按 **回车**：
+2. 粘贴下面这一行，按 **回车**：
+
+   ```bash
+   npm install -g obsidian-reminders && obsidian-reminders
+   ```
+
+3. 等出现「Done / 完成」。App 已经装进「**应用程序**」文件夹并自动打开，以后和其他 App 一样从启动台或聚焦搜索打开即可，不会出现「Apple 无法验证」的提示。
+
+以后更新：再运行一次同样的命令。其他命令：`obsidian-reminders open`（打开）、`obsidian-reminders uninstall`（卸载）、`obsidian-reminders --help`。
+
+**方法 B：不装 Node.js，终端里粘贴一行**
 
    ```bash
    curl -fsSL https://raw.githubusercontent.com/YorenZZZ/obsidian-reminders/main/scripts/install-latest.sh | bash
    ```
 
-3. 等出现「Done / 完成」，App 会自动打开。终端可以关掉了。
-
-**方法 B：手动下载**
+**方法 C：手动下载**
 
 1. 打开 [最新版本页面](https://github.com/YorenZZZ/obsidian-reminders/releases/latest)，下载 **Obsidian-Reminders.zip**。
 2. 双击 zip 解压，把 **Obsidian Reminders** 拖进「**应用程序**」文件夹。
@@ -146,7 +156,7 @@
 | 提示「提醒事项里没有可用的账户」 | 打开「提醒事项」→ 设置 → 账户，启用 iCloud 或「在我的 Mac 上」，然后点 **立即同步**。 |
 | 某个任务没有出现 | 检查：是 `- [ ]` 任务行；有 📅 或 ⏳，日期格式是 `YYYY-MM-DD`；在白名单内 / 不在黑名单里。 |
 | 提示「已在提醒事项完成，但无法回写 Obsidian」 | 勾选提醒之后，这行任务在 Obsidian 里被改过，无法安全对上。到 Obsidian 里手动勾掉即可，提示会自动消失。 |
-| 「Apple 无法验证……」打不开 | 见上面「方法 B」第 4 步。 |
+| 「Apple 无法验证……」打不开 | 改用方法 A 或 B 安装，或见「方法 C」第 4 步。 |
 | 其他问题 | 点 **查看完整日志**，看最后几行。 |
 
 ---
@@ -154,7 +164,7 @@
 ## 卸载
 
 1. 点菜单栏图标 → **退出**。
-2. 把「应用程序」里的 **Obsidian Reminders** 拖进废纸篓。
+2. 把「应用程序」里的 **Obsidian Reminders** 拖进废纸篓。如果是用 npm 装的，改为在终端运行 `obsidian-reminders uninstall && npm uninstall -g obsidian-reminders`。
 3. （可选）彻底清理：在终端粘贴运行
 
    ```bash

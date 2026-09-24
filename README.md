@@ -29,18 +29,28 @@ A small native macOS app that puts your **dated Obsidian tasks** into Apple **Re
 
 ### Step 1 — Install the app
 
-**Option A (easiest): one line in Terminal**
+**Option A (easiest): install with npm**
+
+Needs [Node.js](https://nodejs.org) (`node -v` in Terminal shows whether you have it).
 
 1. Press **⌘ Space**, type **Terminal**, press **Return**.
-2. Copy this line, paste it into the Terminal window, press **Return**:
+2. Paste this line and press **Return**:
+
+   ```bash
+   npm install -g obsidian-reminders && obsidian-reminders
+   ```
+
+3. Wait for "Done". The app is now in your **Applications** folder and opens by itself — later, open it from Launchpad or Spotlight like any other app. No "Apple cannot check it" warning.
+
+To update later, run the same line again. Other commands: `obsidian-reminders open`, `obsidian-reminders uninstall`, `obsidian-reminders --help`.
+
+**Option B: one line in Terminal, without Node.js**
 
    ```bash
    curl -fsSL https://raw.githubusercontent.com/YorenZZZ/obsidian-reminders/main/scripts/install-latest.sh | bash
    ```
 
-3. Wait for "Done". The app opens by itself. You can close Terminal.
-
-**Option B: download manually**
+**Option C: download manually**
 
 1. Go to the [latest release](https://github.com/YorenZZZ/obsidian-reminders/releases/latest) and download **Obsidian-Reminders.zip**.
 2. Double-click the zip, then drag **Obsidian Reminders** into your **Applications** folder.
@@ -144,7 +154,7 @@ Keyboard: **⌘R** sync now · **⌘W** close window (keeps running) · **⌘1**
 | Banner: *Reminders has no account* | Open Reminders → Settings → Accounts and enable iCloud or *On My Mac*, then click **Sync Now**. |
 | A task doesn't show up | It needs `- [ ]`, a 📅 or ⏳ date in `YYYY-MM-DD` form, and must be inside your whitelist / outside your blacklist. |
 | *Completed in Reminders but could not update Obsidian* | The task line was edited after you ticked the reminder, so it can't be matched safely. Tick it in Obsidian by hand; the warning disappears. |
-| "Apple cannot check it for malicious software" | See Install → Option B, step 4. |
+| "Apple cannot check it for malicious software" | Install with Option A or B instead, or see Option C, step 4. |
 | Anything else | Click **View Full Log** and look at the last lines. |
 
 ---
@@ -152,7 +162,7 @@ Keyboard: **⌘R** sync now · **⌘W** close window (keeps running) · **⌘1**
 ## Uninstall
 
 1. Quit the app from its menu bar icon → **Quit**.
-2. Drag **Obsidian Reminders** from Applications to the Trash.
+2. Drag **Obsidian Reminders** from Applications to the Trash. If you installed with npm, run `obsidian-reminders uninstall && npm uninstall -g obsidian-reminders` instead.
 3. Optional clean-up — paste into Terminal:
 
    ```bash
